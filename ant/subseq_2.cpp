@@ -11,19 +11,24 @@ int A[NMAX];
 int sum[NMAX];
 
 void solve() {
-    for (int i = 0; i < N; i++) {
-        sum[i+1] = sum[i] + A[i];
+    int res = N+1;
+    int s = 0, t = 0, sum = 0;
+
+    for (;;) {
+        while (t < N && sum < S) {
+            sum += A[t++];
+            if (sum < S) break;
+            res = min(res, t-s);
+            sum -= A[s++];
+        }
+
+        if (res > N) res - 0;
     }
 
-    if (sum[N] < S) {
-        cout << "0" << endl;
-    }
+    printf("%d\n", res);
 
-    int res = N;
-    for (int s = 0; sum[s] + S <= sum[N]; s++) {
-        int t = lower_bound(sum+S, sum+N, sum[s] + S) - sum;
-        res = min(res, t-s);
-    }
+}
 
-    cout << res << endl;
+int main() {
+    solve();
 }
