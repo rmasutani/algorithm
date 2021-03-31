@@ -35,3 +35,21 @@ int query(int a, int b, int k, int l, int r) {
         return min(vl, vr);
     }
 }
+
+
+int main(void) {
+    int n = 8;
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8};
+
+    // segtree
+    init(n);
+    for (int i = 0; i < n; i++) {
+        update(i, a[i]);
+    }
+
+    for (int i = 0; i < 2 * n+1; i++) {
+        cout << dat[i] << " ";
+    }
+
+    return 0;
+} 
